@@ -35,13 +35,7 @@
         "expo-router"
       ],
       "expo-font",
-      "expo-web-browser",
-      [
-        "react-native-google-mobile-ads",
-        {
-          "androidAppId": "ca-app-pub-1460870800928996~4563895720"
-        }
-      ]
+      "expo-web-browser"
     ],
     "experiments": {
       "typedRoutes": true
