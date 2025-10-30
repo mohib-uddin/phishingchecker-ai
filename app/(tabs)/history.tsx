@@ -1,15 +1,17 @@
+import AdBanner from '@/components/AdBanner';
 import { useApp } from '@/contexts/AppContext';
 import type { ScanRecord } from '@/types/phishing';
 import { AlertCircle, CheckCircle, Clock, Trash2 } from 'lucide-react-native';
 import { useState } from 'react';
 import {
-  Alert,
-  FlatList,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
+    Alert,
+    FlatList,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    View,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function HistoryScreen() {
   const { scanHistory, clearHistory } = useApp();
@@ -124,6 +126,9 @@ export default function HistoryScreen() {
             Your analyzed messages will appear here
           </Text>
         </View>
+        <SafeAreaView edges={{ bottom: 'additive' }} style={styles.adFooter}>
+          <AdBanner />
+        </SafeAreaView>
       </View>
     );
   }
@@ -152,6 +157,9 @@ export default function HistoryScreen() {
         contentContainerStyle={styles.listContent}
         showsVerticalScrollIndicator={false}
       />
+      <SafeAreaView edges={{ bottom: 'additive' }} style={styles.adFooter}>
+        <AdBanner />
+      </SafeAreaView>
     </View>
   );
 }
@@ -192,6 +200,14 @@ const styles = StyleSheet.create({
   listContent: {
     padding: 20,
     paddingBottom: 40,
+  },
+  adFooter: {
+    borderTopWidth: 1,
+    borderTopColor: '#e5e7eb',
+    backgroundColor: '#ffffff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 6,
   },
   scanCard: {
     backgroundColor: '#fff',

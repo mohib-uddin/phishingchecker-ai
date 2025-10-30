@@ -1,21 +1,23 @@
+import AdBanner from '@/components/AdBanner';
 import { useApp } from '@/contexts/AppContext';
-import { router } from 'expo-router';
 import * as Haptics from 'expo-haptics';
+import { router } from 'expo-router';
 import { Shield } from 'lucide-react-native';
 import { useState } from 'react';
 import {
-  ActivityIndicator,
-  Alert,
-  Animated,
-  Keyboard,
-  Platform,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
+    ActivityIndicator,
+    Alert,
+    Animated,
+    Keyboard,
+    Platform,
+    ScrollView,
+    StyleSheet,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    View,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function ScannerScreen() {
   const { analyze, isAnalyzing, stats } = useApp();
@@ -191,6 +193,9 @@ export default function ScannerScreen() {
           🔒 Your data is analyzed securely and not stored on our servers
         </Text>
       </ScrollView>
+      <SafeAreaView edges={{ bottom: 'additive' }} style={styles.adFooter}>
+        <AdBanner />
+      </SafeAreaView>
     </View>
   );
 }
@@ -206,6 +211,14 @@ const styles = StyleSheet.create({
   scrollContent: {
     padding: 20,
     paddingBottom: 40,
+  },
+  adFooter: {
+    borderTopWidth: 1,
+    borderTopColor: '#e5e7eb',
+    backgroundColor: '#ffffff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 6,
   },
   header: {
     alignItems: 'center',
