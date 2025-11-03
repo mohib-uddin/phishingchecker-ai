@@ -11,7 +11,6 @@ import {
     TouchableOpacity,
     View,
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function HistoryScreen() {
   const { scanHistory, clearHistory } = useApp();
@@ -126,9 +125,9 @@ export default function HistoryScreen() {
             Your analyzed messages will appear here
           </Text>
         </View>
-        <SafeAreaView edges={{ bottom: 'additive' }} style={styles.adFooter}>
+        <View style={styles.adFooter}>
           <AdBanner />
-        </SafeAreaView>
+        </View>
       </View>
     );
   }
@@ -157,9 +156,9 @@ export default function HistoryScreen() {
         contentContainerStyle={styles.listContent}
         showsVerticalScrollIndicator={false}
       />
-      <SafeAreaView edges={{ bottom: 'additive' }} style={styles.adFooter}>
+      <View style={styles.adFooter}>
         <AdBanner />
-      </SafeAreaView>
+      </View>
     </View>
   );
 }
@@ -202,12 +201,11 @@ const styles = StyleSheet.create({
     paddingBottom: 40,
   },
   adFooter: {
-    borderTopWidth: 1,
-    borderTopColor: '#e5e7eb',
     backgroundColor: '#ffffff',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: 6,
+    paddingTop: 8,
+    paddingBottom: 4,
   },
   scanCard: {
     backgroundColor: '#fff',

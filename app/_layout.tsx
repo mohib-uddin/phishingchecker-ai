@@ -6,6 +6,7 @@ import React, { useEffect } from 'react';
 import { Platform } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import mobileAds from 'react-native-google-mobile-ads';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -30,21 +31,32 @@ export default function RootLayout() {
   useEffect(() => {
     SplashScreen.hideAsync();
     if (Platform.OS !== 'web') {
+      // Initialize Google Mobile Ads SDK
       mobileAds()
         .initialize()
-        .catch(() => {
-          // no-op: avoid crashing the app if initialization fails
+        .then((adapterStatuses: unknown) => {
+          console.log('Google Mobile Ads initialized successfully');
+          // Log initialization status for debugging
+          if (__DEV__) {
+            console.log('Adapter statuses:', adapterStatuses);
+          }
+        })
+        .catch((error: Error) => {
+          console.error('Failed to initialize Google Mobile Ads:', error);
+          // Don't crash the app, but log the error for debugging
         });
     }
   }, []);
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <AppProvider>
-        <GestureHandlerRootView>
-          <RootLayoutNav />
-        </GestureHandlerRootView>
-      </AppProvider>
-    </QueryClientProvider>
+    <SafeAreaProvider>
+      <QueryClientProvider client={queryClient}>
+        <AppProvider>
+          <GestureHandlerRootView style={{ flex: 1 }}>
+            <RootLayoutNav />
+          </GestureHandlerRootView>
+        </AppProvider>
+      </QueryClientProvider>
+    </SafeAreaProvider>
   );
 }

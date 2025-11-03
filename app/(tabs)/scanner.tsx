@@ -17,7 +17,6 @@ import {
     TouchableOpacity,
     View,
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function ScannerScreen() {
   const { analyze, isAnalyzing, stats } = useApp();
@@ -193,9 +192,9 @@ export default function ScannerScreen() {
           🔒 Your data is analyzed securely and not stored on our servers
         </Text>
       </ScrollView>
-      <SafeAreaView edges={{ bottom: 'additive' }} style={styles.adFooter}>
+      <View style={styles.adFooter}>
         <AdBanner />
-      </SafeAreaView>
+      </View>
     </View>
   );
 }
@@ -213,12 +212,11 @@ const styles = StyleSheet.create({
     paddingBottom: 40,
   },
   adFooter: {
-    borderTopWidth: 1,
-    borderTopColor: '#e5e7eb',
     backgroundColor: '#ffffff',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: 6,
+    paddingTop: 8,
+    paddingBottom: 4,
   },
   header: {
     alignItems: 'center',
