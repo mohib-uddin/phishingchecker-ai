@@ -24,7 +24,14 @@
       },
       "package": "app.rork.phishing_alert_mobile",
       "permissions": [
-        "android.permission.VIBRATE"
+        "android.permission.VIBRATE",
+        "android.permission.POST_NOTIFICATIONS",
+        "android.permission.RECEIVE_BOOT_COMPLETED"
+      ],
+      "intentFilters": [
+        {
+          "action": "android.service.notification.NotificationListenerService"
+        }
       ]
     },
     "web": {
@@ -41,7 +48,17 @@
         {
           "androidAppId": "ca-app-pub-1460870800928996~4563895720"
         }
-      ]
+      ],
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/images/icon.png",
+          "color": "#2563eb",
+          "sounds": [],
+          "mode": "production"
+        }
+      ],
+      "./plugins/withNotificationListener"
     ],
     "experiments": {
       "typedRoutes": true

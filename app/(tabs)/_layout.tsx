@@ -1,5 +1,5 @@
 import { Tabs } from 'expo-router';
-import { History, ScanSearch } from 'lucide-react-native';
+import { History, ScanSearch, Settings } from 'lucide-react-native';
 import React from 'react';
 import { Platform } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -56,6 +56,15 @@ export default function TabLayout() {
           title: 'History',
           tabBarIcon: ({ color }) => (
             <History size={24} color={color} strokeWidth={2} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="settings"
+        options={{
+          title: 'Settings',
+          tabBarIcon: ({ color }) => (
+            <Settings size={24} color={color} strokeWidth={2} />
           ),
         }}
       />
